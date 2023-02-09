@@ -7,13 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class GameView: BaseView {
+    //MARK: - Outlets
+    @IBOutlet private var searchBar: UISearchBar!
+    
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.tableViewData = .new
+   
     }
-
-
 }
 
