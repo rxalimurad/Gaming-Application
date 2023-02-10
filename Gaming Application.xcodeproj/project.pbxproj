@@ -16,6 +16,11 @@
 		5F15E7E8299505D000AE11DC /* Gaming_ApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E7E7299505D000AE11DC /* Gaming_ApplicationTests.swift */; };
 		5F15E7F2299505D000AE11DC /* Gaming_ApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E7F1299505D000AE11DC /* Gaming_ApplicationUITests.swift */; };
 		5F15E7F4299505D000AE11DC /* Gaming_ApplicationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E7F3299505D000AE11DC /* Gaming_ApplicationUITestsLaunchTests.swift */; };
+		5F15E8012995FF8B00AE11DC /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E8002995FF8B00AE11DC /* APIClient.swift */; };
+		5F15E8032995FFF000AE11DC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E8022995FFF000AE11DC /* Errors.swift */; };
+		5F15E8052996001600AE11DC /* URLRequestConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E8042996001600AE11DC /* URLRequestConvertibleType.swift */; };
+		5F15E8072996047000AE11DC /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E8062996047000AE11DC /* JsonParser.swift */; };
+		5F15E80B2996106F00AE11DC /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E80A2996106F00AE11DC /* GameViewModel.swift */; };
 		FA1FF70B29954F9D0047F8B7 /* GameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FF70929954F9D0047F8B7 /* GameViewCell.swift */; };
 		FA1FF70C29954F9D0047F8B7 /* GameViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1FF70A29954F9D0047F8B7 /* GameViewCell.xib */; };
 		FA1FF711299558CD0047F8B7 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FF710299558CD0047F8B7 /* FavouriteView.swift */; };
@@ -25,7 +30,7 @@
 		FA1FF719299566690047F8B7 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FF718299566690047F8B7 /* UIImageView.swift */; };
 		FA802CF929957386006124A4 /* GameDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA802CF829957386006124A4 /* GameDetailModel.swift */; };
 		FA802CFB29957584006124A4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA802CFA29957584006124A4 /* DetailView.swift */; };
-		FA802CFD29957643006124A4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA802CFC29957643006124A4 /* Network.swift */; };
+		FA802CFD29957643006124A4 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA802CFC29957643006124A4 /* GameService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +64,11 @@
 		5F15E7ED299505D000AE11DC /* Gaming ApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gaming ApplicationUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F15E7F1299505D000AE11DC /* Gaming_ApplicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gaming_ApplicationUITests.swift; sourceTree = "<group>"; };
 		5F15E7F3299505D000AE11DC /* Gaming_ApplicationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gaming_ApplicationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5F15E8002995FF8B00AE11DC /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		5F15E8022995FFF000AE11DC /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		5F15E8042996001600AE11DC /* URLRequestConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestConvertibleType.swift; sourceTree = "<group>"; };
+		5F15E8062996047000AE11DC /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		5F15E80A2996106F00AE11DC /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		FA1FF70929954F9D0047F8B7 /* GameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewCell.swift; sourceTree = "<group>"; };
 		FA1FF70A29954F9D0047F8B7 /* GameViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewCell.xib; sourceTree = "<group>"; };
 		FA1FF710299558CD0047F8B7 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
@@ -68,7 +78,7 @@
 		FA1FF718299566690047F8B7 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		FA802CF829957386006124A4 /* GameDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailModel.swift; sourceTree = "<group>"; };
 		FA802CFA29957584006124A4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		FA802CFC29957643006124A4 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		FA802CFC29957643006124A4 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,9 +131,8 @@
 			children = (
 				FA1FF71A29956BF50047F8B7 /* Application */,
 				FA1FF71B29956C130047F8B7 /* Extensions */,
-				FA1FF70D299550950047F8B7 /* Widgets */,
 				FA1FF71C29956C360047F8B7 /* Views */,
-				FA1FF71F29956C930047F8B7 /* ViewModel */,
+				5F15E8092996104600AE11DC /* ViewModel */,
 				FA1FF71E29956C850047F8B7 /* Models */,
 				FA1FF72029956CE60047F8B7 /* Network */,
 				FA1FF72129956CF40047F8B7 /* Utilities */,
@@ -148,11 +157,12 @@
 			path = "Gaming ApplicationUITests";
 			sourceTree = "<group>";
 		};
-		FA1FF70D299550950047F8B7 /* Widgets */ = {
+		5F15E8092996104600AE11DC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5F15E80A2996106F00AE11DC /* GameViewModel.swift */,
 			);
-			path = Widgets;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		FA1FF71A29956BF50047F8B7 /* Application */ = {
@@ -206,17 +216,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		FA1FF71F29956C930047F8B7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		FA1FF72029956CE60047F8B7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				FA802CFC29957643006124A4 /* Network.swift */,
+				FA802CFC29957643006124A4 /* GameService.swift */,
+				5F15E8002995FF8B00AE11DC /* APIClient.swift */,
+				5F15E8022995FFF000AE11DC /* Errors.swift */,
+				5F15E8042996001600AE11DC /* URLRequestConvertibleType.swift */,
+				5F15E8062996047000AE11DC /* JsonParser.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -363,11 +370,16 @@
 			files = (
 				5F15E7D5299505C800AE11DC /* GameView.swift in Sources */,
 				FA1FF71529955EB70047F8B7 /* GameListModel.swift in Sources */,
-				FA802CFD29957643006124A4 /* Network.swift in Sources */,
+				5F15E8072996047000AE11DC /* JsonParser.swift in Sources */,
+				FA802CFD29957643006124A4 /* GameService.swift in Sources */,
 				5F15E7D1299505C800AE11DC /* AppDelegate.swift in Sources */,
 				FA1FF711299558CD0047F8B7 /* FavouriteView.swift in Sources */,
+				5F15E8052996001600AE11DC /* URLRequestConvertibleType.swift in Sources */,
+				5F15E80B2996106F00AE11DC /* GameViewModel.swift in Sources */,
 				FA802CF929957386006124A4 /* GameDetailModel.swift in Sources */,
+				5F15E8032995FFF000AE11DC /* Errors.swift in Sources */,
 				FA802CFB29957584006124A4 /* DetailView.swift in Sources */,
+				5F15E8012995FF8B00AE11DC /* APIClient.swift in Sources */,
 				FA1FF71329955BC80047F8B7 /* BaseView.swift in Sources */,
 				FA1FF70B29954F9D0047F8B7 /* GameViewCell.swift in Sources */,
 				5F15E7D3299505C800AE11DC /* SceneDelegate.swift in Sources */,

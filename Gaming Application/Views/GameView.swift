@@ -14,7 +14,7 @@ class GameView: BaseView {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableViewData = .new
+//        self.tableViewData = .new
    
     }
 }
