@@ -9,6 +9,7 @@ import Foundation
 
 protocol GameServiceType {
     func getGamesList(page: Int, search: String?, completion: @escaping((NetworkRequestError?, GameListModel?) -> Void))
+    func getGameDetail(gameId: String, completion: @escaping((NetworkRequestError?, GameDetailModel?) -> Void))
 
 }
 
@@ -29,6 +30,12 @@ final class GameService: GameServiceType {
                            method: .get,
                            queryItems: queryItems
         )
+        apiClient.request(endPoint: req, completion: completion)
+    }
+    
+    func getGameDetail(gameId: String, completion: @escaping((NetworkRequestError?, GameDetailModel?) -> Void)) {
+        let queryItems = [Constants.API.apiKey : Constants.Configuration.apiKeyValue]
+        let req = Endpoint(urlPostfix: gameId, method: .get, queryItems: queryItems)
         apiClient.request(endPoint: req, completion: completion)
     }
     
