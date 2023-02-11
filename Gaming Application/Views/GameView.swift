@@ -94,8 +94,18 @@ extension GameView: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-//MARK: - TableView ScrollView
+//MARK: - Search Bar Delegate
+extension GameView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count > 3 {
+            viewModel.searchString = searchText
+            viewModel.pageNumber = 1
+            viewModel.getGamesList(search: searchText)
+        }
+    }
+}
 
+//MARK: - TableView ScrollView
 extension GameView {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset

@@ -12,7 +12,7 @@ class GameViewCell: UITableViewCell {
     @IBOutlet private var gameTitle: UILabel!
     @IBOutlet private var gameMetacritic: UILabel!
     @IBOutlet private var gameGenre: UILabel!
-    private lazy var imageService = ImageService()
+    private lazy var imageService: ImageServiceType = ImageService()
     private var imageRequest: Cancellable?
 
 

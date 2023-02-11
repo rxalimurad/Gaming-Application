@@ -7,8 +7,11 @@
 
 import UIKit
 
-final class ImageService {
-    // MARK: - Public API
+protocol ImageServiceType {
+    func image(for url: URL, completion: @escaping (UIImage?) -> Void) -> Cancellable
+}
+
+final class ImageService: ImageServiceType {
     func image(for url: URL, completion: @escaping (UIImage?) -> Void) -> Cancellable {
         let dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
             var image: UIImage?

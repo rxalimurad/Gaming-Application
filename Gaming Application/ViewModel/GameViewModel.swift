@@ -14,6 +14,7 @@ protocol GameViewModelDelegate: AnyObject {
 
 protocol GameViewModelType {
     var pageNumber: Int { get set}
+    var searchString: String { get set}
     var delegate: GameViewModelDelegate? { get set}
     var hitInProgress: Bool { get set}
     var gamesList: [Game] { get set}
@@ -29,6 +30,7 @@ class GameViewModel: GameViewModelType {
     var hitInProgress = false
     var service: GameServiceType
     var pageNumber: Int = 1
+    var searchString = ""
     weak var delegate: GameViewModelDelegate?
     var gamesList: [Game] = [] {
         didSet {

@@ -24,7 +24,6 @@
 		5F15E80D29974CB000AE11DC /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E80C29974CB000AE11DC /* UIView.swift */; };
 		5F15E81029974D5A00AE11DC /* GameDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E80F29974D5A00AE11DC /* GameDetailsViewModel.swift */; };
 		5F15E8162997521200AE11DC /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E8152997521200AE11DC /* UILabel.swift */; };
-		5F15E81829975FBB00AE11DC /* WrappedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E81729975FBB00AE11DC /* WrappedButton.swift */; };
 		5F15E81A2997625900AE11DC /* ExpandableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15E8192997625900AE11DC /* ExpandableLabel.swift */; };
 		5F65A7EC299787EC00F75080 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A7EB299787EC00F75080 /* ImageService.swift */; };
 		5F65A7EE299788AC00F75080 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A7ED299788AC00F75080 /* Cancellable.swift */; };
@@ -77,7 +76,6 @@
 		5F15E80C29974CB000AE11DC /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		5F15E80F29974D5A00AE11DC /* GameDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsViewModel.swift; sourceTree = "<group>"; };
 		5F15E8152997521200AE11DC /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
-		5F15E81729975FBB00AE11DC /* WrappedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedButton.swift; sourceTree = "<group>"; };
 		5F15E8192997625900AE11DC /* ExpandableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLabel.swift; sourceTree = "<group>"; };
 		5F65A7EB299787EC00F75080 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		5F65A7ED299788AC00F75080 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 			children = (
 				5F15E80C29974CB000AE11DC /* UIView.swift */,
 				5F15E8152997521200AE11DC /* UILabel.swift */,
-				5F15E81729975FBB00AE11DC /* WrappedButton.swift */,
 				5F15E8192997625900AE11DC /* ExpandableLabel.swift */,
 			);
 			path = Extensions;
@@ -404,7 +401,6 @@
 				5F65A7EC299787EC00F75080 /* ImageService.swift in Sources */,
 				5F15E81A2997625900AE11DC /* ExpandableLabel.swift in Sources */,
 				5F65A7EE299788AC00F75080 /* Cancellable.swift in Sources */,
-				5F15E81829975FBB00AE11DC /* WrappedButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
