@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import CoreData
 // MARK: - GameListModel
 struct GameListModel: Codable {
     let next: String?

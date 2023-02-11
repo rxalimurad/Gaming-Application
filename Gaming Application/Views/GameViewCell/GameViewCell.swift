@@ -16,10 +16,13 @@ class GameViewCell: UITableViewCell {
     private var imageRequest: Cancellable?
 
 
-    func configureCell(game: Game) {
+    func configureCell(game: Game, rememberOpenGame: Bool = true) {
         gameTitle.text = game.name ?? ""
         gameMetacritic.text = "\(game.metacritic ?? 0)"
         gameGenre.text = game.genres?.compactMap{ $0.name }.joined(separator: ", ")
+        if let gameId = game.id, rememberOpenGame {
+            self.backgroundColor = UserDefaults.standard.openedGames.contains(gameId) ? UIColor.openedColor : UIColor.white
+        }
         guard let urlStr = game.backgroundImage else { return }
         guard let url = URL(string: urlStr) else { return }
         imageRequest = imageService.image(for: url) {[weak self] image in

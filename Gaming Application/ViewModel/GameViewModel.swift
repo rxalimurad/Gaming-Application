@@ -9,8 +9,8 @@ import Foundation
 protocol GameViewModelDelegate: AnyObject {
     func updateUI(games: [Game]?)
     func showError(error: NetworkRequestError)
+    func updateTableFooter(isHidden: Bool)
 }
-
 
 protocol GameViewModelType {
     var pageNumber: Int { get set}
@@ -24,13 +24,21 @@ protocol GameViewModelType {
     func getGamesList(search: String?)
 }
 
-
 class GameViewModel: GameViewModelType {
     //MARK: - properties
-    var hitInProgress = false
+    var hitInProgress = false {
+        didSet {
+            self.delegate?.updateTableFooter(isHidden: !hitInProgress)
+        }
+    }
     var service: GameServiceType
     var pageNumber: Int = 1
-    var searchString = ""
+    var searchString = "" {
+        didSet {
+            pageNumber = 1
+            gamesList = []
+        }
+    }
     weak var delegate: GameViewModelDelegate?
     var gamesList: [Game] = [] {
         didSet {
@@ -57,7 +65,9 @@ class GameViewModel: GameViewModelType {
                 self?.delegate?.showError(error: error)
             } else {
                 if let gameModel = gameModel {
-                    self?.gamesList.append(contentsOf: gameModel.results ?? [])
+                    if let games = gameModel.results {
+                        self?.gamesList.append(contentsOf: games)
+                    } 
                 }
             }
         }

@@ -15,9 +15,14 @@ final class APIClient: APIClientType {
     
     func request<T:Decodable>(endPoint: URLRequestConvertibleType, completion: @escaping((NetworkRequestError?, T?) -> Void)) {
         let urlRequest = (try? endPoint.urlRequest())!
+        
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
+                if (error as NSError).code == -1009 {
+                    completion(NetworkRequestError.notConnected, nil)
+                } else {
                 completion(NetworkRequestError.serverError(error: error.localizedDescription), nil)
+                }
                 return
             }
             guard let data = data else {

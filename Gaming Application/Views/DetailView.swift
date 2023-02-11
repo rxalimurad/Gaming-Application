@@ -25,19 +25,24 @@ class DetailView: UIViewController {
         super.viewDidLoad()
         setupIntialUI()
         viewModel?.fetchGameDetails()
-        
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    
     //MARK: - Actions
     @objc
     func btnFavTapped(_ sender: AnyObject) {
-        
+        if viewModel?.isFavourite() == true {
+            viewModel?.removeFromFavourite()
+            navigationItem.rightBarButtonItem?.title = "Favourite"
+        } else {
+            viewModel?.addToFavourite()
+            navigationItem.rightBarButtonItem?.title = "Favourited"
+        }
     }
     
     @IBAction private func btnWebsite(sender: UIButton) {
@@ -45,11 +50,13 @@ class DetailView: UIViewController {
             UIApplication.shared.open(url)
         }
     }
+    
     @IBAction private func btnReddit(sender: UIButton) {
         if let url = viewModel?.getRedditUrl() {
             UIApplication.shared.open(url)
         }
     }
+    
     //MARK: - Private Methods
     private func setupIntialUI() {
         gradientView.addGradient(color1: .clear, color2: .black.withAlphaComponent(0.8))
@@ -59,6 +66,8 @@ class DetailView: UIViewController {
         self.activityIndicator.isHidden = false
         redditBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         redditBtn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        let title = viewModel?.isFavourite() == true ? "Favourited" : "Favourite"
+        navigationItem.rightBarButtonItem?.title = title
     }
     
 }
@@ -84,6 +93,4 @@ extension DetailView: GameDetailViewModelDelegate {
             }
         }
     }
-    
-    
 }

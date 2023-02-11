@@ -33,17 +33,37 @@ class GameView: UIViewController {
         viewModel.delegate = self
     }
     
-    private func moveToDetails(with gameId: Int) {
+    private func moveToDetails(with game: Game) {
+        guard let gameId = game.id else { return }
+        UserDefaults.standard.openedGames.append(gameId)
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailView") as! DetailView
-        vc.viewModel = GameDetailsViewModel(gameId: gameId, service: GameService())
+        let vc = UIStoryboard(name: Constants.Views.storyboard, bundle: nil)
+            .instantiateViewController(withIdentifier: Constants.Views.DetailView) as! DetailView
+        //setting view model for next screen
+        vc.viewModel = GameDetailsViewModel(game: game, service: GameService(), localDBHandler: CoreDataHandler())
         self.navigationController?.pushViewController(vc, animated: true)
+        self.tableView.reloadData()
+    }
+    private func getTableFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
+        let spinner = UIActivityIndicatorView(style: .gray)
+        spinner.startAnimating()
+        footerView.addSubview(spinner)
+        spinner.setConstraints(with: footerView)
+        footerView.backgroundColor = .clear
+        return footerView
     }
 }
 
 //MARK: - View Model Delegate
 extension GameView: GameViewModelDelegate {
+    func updateTableFooter(isHidden: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.tableFooterView = isHidden ? nil : self?.getTableFooter()
+        }
+    }
+    
     func showError(error: NetworkRequestError) {
         DispatchQueue.main.async { [weak self] in
             error.showErrorDialog(viewController: self)
@@ -75,35 +95,23 @@ extension GameView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let gameId = viewModel.getGame(at: indexPath)?.id {
-            self.moveToDetails(with: gameId)
+        if let game = viewModel.getGame(at: indexPath) {
+            self.moveToDetails(with: game)
         }
     }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        viewModel.hitInProgress ? 50 : 0
-    }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
-        let spinner = UIActivityIndicatorView(style: .gray)
-        spinner.startAnimating()
-        footerView.addSubview(spinner)
-        spinner.setConstraints(with: footerView)
-        footerView.backgroundColor = .clear
-        return footerView
-    }
+   
     
 }
 //MARK: - Search Bar Delegate
 extension GameView: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count > 3 {
+        if searchText.isEmpty || searchText.count > 3 {
             viewModel.searchString = searchText
-            viewModel.pageNumber = 1
-            viewModel.getGamesList(search: searchText)
+            viewModel.getGamesList(search: viewModel.searchString)
         }
     }
 }
+
 
 //MARK: - TableView ScrollView
 extension GameView {
@@ -118,7 +126,7 @@ extension GameView {
         if yaxis > height && yaxis < (height + reloaddistance) {
             if scrollView.isDragging && !viewModel.hitInProgress {
                 viewModel.pageNumber += 1
-                viewModel.getGamesList(search: nil)
+                viewModel.getGamesList(search: viewModel.searchString)
             }
         }
         
