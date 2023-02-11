@@ -37,9 +37,13 @@ struct Endpoint {
     
     fileprivate var url: URL? {
         var components = URLComponents()
+        var cPath = ServiceNames.game.rawValue + (path?.compactMap { "/\($0)" }.joined() ?? "")
+        if urlPostfix != nil {
+            cPath.append("/\((urlPostfix ?? ""))")
+        }
         components.scheme = scheme
         components.host = host
-        components.path = ServiceNames.game.rawValue + (path?.compactMap { "/\($0)" }.joined() ?? "") + (urlPostfix ?? "")
+        components.path = cPath
         components.queryItems = queryItems?.compactMap { URLQueryItem(name: $0.key, value: $0.value as? String) }
         return components.url
     }
