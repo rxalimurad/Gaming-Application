@@ -39,6 +39,8 @@
 		FA3A53E62998378B00490406 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3A53E52998378B00490406 /* URLs.swift */; };
 		FA4A751A29995ED100AA8F39 /* GameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A751929995ED100AA8F39 /* GameViewModelTests.swift */; };
 		FA4A751C29995F4A00AA8F39 /* MockGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A751B29995F4A00AA8F39 /* MockGameService.swift */; };
+		FA4A751F2999868500AA8F39 /* GameDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A751E2999868500AA8F39 /* GameDetailViewModelTests.swift */; };
+		FA4A752129998DE700AA8F39 /* FavouriteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A752029998DE700AA8F39 /* FavouriteViewModelTests.swift */; };
 		FA802CF929957386006124A4 /* GameDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA802CF829957386006124A4 /* GameDetailModel.swift */; };
 		FA802CFB29957584006124A4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA802CFA29957584006124A4 /* DetailView.swift */; };
 		FA802CFD29957643006124A4 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA802CFC29957643006124A4 /* GameService.swift */; };
@@ -98,6 +100,8 @@
 		FA3A53E52998378B00490406 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		FA4A751929995ED100AA8F39 /* GameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModelTests.swift; sourceTree = "<group>"; };
 		FA4A751B29995F4A00AA8F39 /* MockGameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGameService.swift; sourceTree = "<group>"; };
+		FA4A751E2999868500AA8F39 /* GameDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewModelTests.swift; sourceTree = "<group>"; };
+		FA4A752029998DE700AA8F39 /* FavouriteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModelTests.swift; sourceTree = "<group>"; };
 		FA802CF829957386006124A4 /* GameDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailModel.swift; sourceTree = "<group>"; };
 		FA802CFA29957584006124A4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		FA802CFC29957643006124A4 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				FA4A751929995ED100AA8F39 /* GameViewModelTests.swift */,
+				FA4A751E2999868500AA8F39 /* GameDetailViewModelTests.swift */,
+				FA4A752029998DE700AA8F39 /* FavouriteViewModelTests.swift */,
 				FA4A751B29995F4A00AA8F39 /* MockGameService.swift */,
 			);
 			path = "Gaming ApplicationTests";
@@ -452,8 +458,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA4A752129998DE700AA8F39 /* FavouriteViewModelTests.swift in Sources */,
 				FA4A751A29995ED100AA8F39 /* GameViewModelTests.swift in Sources */,
 				FA4A751C29995F4A00AA8F39 /* MockGameService.swift in Sources */,
+				FA4A751F2999868500AA8F39 /* GameDetailViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,7 +693,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -695,7 +703,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alimurad.gamingapp.Gaming-ApplicationTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "Gaming ApplicationTests/Gaming ApplicationTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -712,7 +720,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -722,7 +730,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alimurad.gamingapp.Gaming-ApplicationTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "Gaming ApplicationTests/Gaming ApplicationTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gaming Application.app/Gaming Application";

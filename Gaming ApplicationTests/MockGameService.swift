@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+@testable import Gaming_Application
 class MockGameService: GameServiceType {
     
     func getGamesList(page: Int, search: String?, completion: @escaping ((NetworkRequestError?, GameListModel?) -> Void)) {
@@ -26,6 +26,7 @@ class MockGameService: GameServiceType {
             completion(NetworkRequestError.emptyData, nil)
         } else {
             let gameDetail = GameDetailModel(id: 0, name: "GTA V", description: "GTA V is a good Game", backgroundImage: "https://media.rawg.io/media/screenshots/40d/40dc4b5b0524efa25dab220ce2b93794.jpg", website: "gtaWebsite", redditURL: "gtaReddit")
+            completion(nil, gameDetail)
         }
     }
     

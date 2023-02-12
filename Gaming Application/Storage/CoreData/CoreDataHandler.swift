@@ -13,10 +13,31 @@ protocol LocalDBHandler {
     func removeGame(game: GameInfo)
     func getFavGames() -> [Game]
     func getGame(id: Int) -> GameInfo?
+    func deleteAllData()
     func isGameExist(id: Int) -> Bool
 }
 class CoreDataHandler: LocalDBHandler {
-
+    func deleteAllData() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        guard let context = appDelegate?.persistentContainer.viewContext
+        else {
+            return
+        }
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GameInfo")
+        request.returnsObjectsAsFaults = false
+        do
+        {
+            let results = try context.fetch(request)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                context.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            debugPrint("Detele all data in GameInfo error : \(error) \(error.userInfo)")
+        }
+    }
+    
     func isGameExist(id: Int) -> Bool {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let context = appDelegate?.persistentContainer.viewContext
@@ -97,8 +118,9 @@ class CoreDataHandler: LocalDBHandler {
         }
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         guard let context = appDelegate?.persistentContainer.viewContext else { return }
-        let entity = NSEntityDescription.entity(forEntityName: "GameInfo", in: context)
-        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        guard let entity = NSEntityDescription.entity(forEntityName: "GameInfo", in: context)
+        else { return }
+        let newUser = NSManagedObject(entity: entity, insertInto: context)
         newUser.setValue(data.id, forKey: "id")
         newUser.setValue(data.genres?.compactMap { $0.name }.joined(separator: ", "), forKey: "genre")
         newUser.setValue(data.backgroundImage, forKey: "imageURL")

@@ -63,7 +63,10 @@ class GameDetailsViewModel: GameDetailsViewModelType {
 
     // MARK: - Service Calls
     func fetchGameDetails() {
-        guard let gameId = game.id else { return }
+        guard let gameId = game.id else {
+            self.delegate?.showError(error: NetworkRequestError.emptyData)
+            return
+        }
         service.getGameDetail(gameId: "\(gameId)") {[weak self] error, model in
             if let error = error {
                 self?.delegate?.showError(error: error)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum NetworkRequestError: Error {
+enum NetworkRequestError: Error, Equatable {
     case parsingError
     case emptyData
     case notConnected

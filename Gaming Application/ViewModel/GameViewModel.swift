@@ -53,7 +53,10 @@ class GameViewModel: GameViewModelType {
         self.gamesList.count
     }
     func getGame(at indexPath: IndexPath) -> Game? {
-        return self.gamesList[indexPath.row]
+        if indexPath.row < gamesList.count {
+            return self.gamesList[indexPath.row]
+        }
+        return nil
     }
     // MARK: - Service Calls
     func getGamesList(search: String?) {
