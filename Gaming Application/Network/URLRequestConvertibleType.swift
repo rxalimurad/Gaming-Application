@@ -13,7 +13,7 @@ protocol URLRequestConvertibleType {
 enum HTTPMethod {
     case get
     case post(body: Data?)
-    
+
     var toString: String {
         switch self {
         case .get:
@@ -34,7 +34,7 @@ struct Endpoint {
     private let method: HTTPMethod
     private let queryItems: [String: Any?]?
     private let path: [String]?
-    
+
     fileprivate var url: URL? {
         var components = URLComponents()
         var cPath = ServiceNames.game.rawValue + (path?.compactMap { "/\($0)" }.joined() ?? "")
@@ -47,7 +47,7 @@ struct Endpoint {
         components.queryItems = queryItems?.compactMap { URLQueryItem(name: $0.key, value: $0.value as? String) }
         return components.url
     }
-    
+
     init(urlPostfix: String?,
          method: HTTPMethod,
          path: [String]? = nil,
@@ -57,7 +57,7 @@ struct Endpoint {
         self.queryItems = queryItems
         self.urlPostfix = urlPostfix
     }
-    
+
 }
 
 extension Endpoint: URLRequestConvertibleType {

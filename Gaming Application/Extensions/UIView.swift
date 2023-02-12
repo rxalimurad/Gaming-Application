@@ -14,7 +14,7 @@ extension UIView {
         trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
         bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
     }
-    
+
     func addGradient(color1: UIColor, color2: UIColor) {
         let gradient = CAGradientLayer()
         gradient.frame = bounds

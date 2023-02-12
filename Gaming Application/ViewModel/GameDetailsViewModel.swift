@@ -24,7 +24,7 @@ protocol GameDetailsViewModelType {
 }
 
 class GameDetailsViewModel: GameDetailsViewModelType {
-    //MARK: - Properties
+    // MARK: - Properties
     var game: Game
     var gameDetail: GameDetailModel?
     var service: GameServiceType
@@ -32,15 +32,15 @@ class GameDetailsViewModel: GameDetailsViewModelType {
     var redditURL: URL?
     var websiteURL: URL?
     weak var delegate: GameDetailViewModelDelegate?
-    
-    //MARK: - Intializer
+
+    // MARK: - Intializer
     required init(game: Game, service: GameServiceType, localDBHandler: LocalDBHandler) {
         self.game = game
         self.service = service
         self.localDBHandler = localDBHandler
     }
-    
-    //MARK: - View Controller Helper
+
+    // MARK: - View Controller Helper
     func getWebsiteUrl() -> URL? {
         return websiteURL
     }
@@ -60,8 +60,8 @@ class GameDetailsViewModel: GameDetailsViewModelType {
             localDBHandler.removeGame(game: coreGame)
         }
     }
-    
-    //MARK: - Service Calls
+
+    // MARK: - Service Calls
     func fetchGameDetails() {
         guard let gameId = game.id else { return }
         service.getGameDetail(gameId: "\(gameId)") {[weak self] error, model in

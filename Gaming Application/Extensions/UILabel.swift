@@ -15,8 +15,8 @@ extension UILabel {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 10
             let fontAttribute = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10)]
-            attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-            attributedString.addAttributes(fontAttribute, range: NSMakeRange(0, attributedString.length))
+            attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+            attributedString.addAttributes(fontAttribute, range: NSRange(location: 0, length: attributedString.length))
             attributedText = attributedString
         } else {
             text = ""
@@ -24,5 +24,5 @@ extension UILabel {
         lineBreakMode = .byTruncatingTail
         adjustsFontSizeToFitWidth = false
     }
-    
+
 }

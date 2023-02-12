@@ -42,7 +42,7 @@ class FavouriteViewModel: FavouriteViewModelType {
     func getNumberOfGames() -> Int {
         games.count
     }
-    
+
     func getFavGame(at indexPath: IndexPath) -> Game {
         games[indexPath.row]
     }

@@ -8,12 +8,12 @@
 import UIKit
 
 class FavouriteView: UIViewController {
-    //MARK: - Properties
+    // MARK: - Properties
     let viewModel = FavouriteViewModel(localDBHandler: CoreDataHandler())
-    //MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var nrfView: UIView!
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupIntialUI()
@@ -24,9 +24,8 @@ class FavouriteView: UIViewController {
         viewModel.fetchFavGameList()
         reloadData()
     }
-    
-    
-    //MARK: - Private Methods
+
+    // MARK: - Private Methods
     private func setupIntialUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         let nib = UINib(nibName: Constants.CellID.gameViewCell, bundle: nil)
@@ -37,37 +36,44 @@ class FavouriteView: UIViewController {
         nrfView.isHidden = false
     }
     private func showAlert(completion: @escaping(() -> Void)) {
-        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Delete",
+                                      message: "Are you sure you want to delete?",
+                                      preferredStyle: .alert)
         let cancelBtn = UIAlertAction(title: "Cancel", style: .default)
         let okBtn = UIAlertAction(title: "OK", style: .destructive) {_ in
             completion()
         }
-        
+
         alert.addAction(okBtn)
         alert.addAction(cancelBtn)
         self.present(alert, animated: true)
-        
+
     }
     private func moveToDetails(with game: Game) {
         guard let gameId = game.id else { return }
         UserDefaults.standard.openedGames.append(gameId)
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        let vc = UIStoryboard(name: Constants.Views.storyboard, bundle: nil)
-            .instantiateViewController(withIdentifier: Constants.Views.DetailView) as! DetailView
-        //setting view model for next screen
-        vc.viewModel = GameDetailsViewModel(game: game, service: GameService(), localDBHandler: CoreDataHandler())
-        self.navigationController?.pushViewController(vc, animated: true)
-        self.tableView.reloadData()
+        if let viewc = UIStoryboard(name: Constants.Views.storyboard, bundle: nil)
+            .instantiateViewController(withIdentifier: Constants.Views.DetailView) as? DetailView {
+            // setting view model for next screen
+            viewc.viewModel = GameDetailsViewModel(game: game,
+                                                   service: GameService(),
+                                                   localDBHandler: CoreDataHandler())
+            self.navigationController?.pushViewController(viewc, animated: true)
+            self.tableView.reloadData()
+        }
     }
 }
-//MARK: - TableView Delegate
+// MARK: - TableView Delegate
 extension FavouriteView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellID.gameViewCell, for: indexPath) as! GameViewCell
-        cell.configureCell(game: viewModel.getFavGame(at: indexPath), rememberOpenGame: false)
-        
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellID.gameViewCell,
+                                                    for: indexPath) as? GameViewCell {
+            cell.configureCell(game: viewModel.getFavGame(at: indexPath), rememberOpenGame: false)
+            return cell
+        }
+        return UITableViewCell()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.getNumberOfGames()
@@ -76,7 +82,9 @@ extension FavouriteView: UITableViewDelegate, UITableViewDataSource {
         let game = viewModel.getFavGame(at: indexPath)
         self.moveToDetails(with: game)
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             showAlert {
                 self.viewModel.removeFav(from: indexPath)
@@ -87,7 +95,7 @@ extension FavouriteView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: - ViewModel Delegate
+// MARK: - ViewModel Delegate
 extension FavouriteView: FavouriteViewModelDelegate {
     func reloadData() {
         self.nrfView.isHidden = viewModel.getNumberOfGames() != 0
