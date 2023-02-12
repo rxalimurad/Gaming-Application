@@ -8,9 +8,5 @@
 import Foundation
 
 enum URLs {
-    #if DEBUG
-    static let serverURL = "api.rawg.io"
-    #else // Release URL
-    static let serverURL = "api.rawg.io"
-    #endif
+    static let baseURL = Bundle.main.infoDictionary?["BaseURL"] as? String ?? ""
 }

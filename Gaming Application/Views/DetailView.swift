@@ -8,7 +8,11 @@
 import UIKit
 
 class DetailView: UIViewController {
-    //MARK: - Outlets
+    // MARK: - Properties
+    var viewModel: GameDetailsViewModelType?
+    private lazy var imageService: ImageServiceType = ImageService()
+
+    // MARK: - Outlets
     @IBOutlet private var gradientView: UIView!
     @IBOutlet private var gameName: UILabel!
     @IBOutlet private var gameDesc: UILabel!
@@ -17,69 +21,68 @@ class DetailView: UIViewController {
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private var webiteBtn: UIButton!
     @IBOutlet private var redditBtn: UIButton!
-    //MARK: - Properties
-    var viewModel: GameDetailsViewModelType?
-    private lazy var imageService: ImageServiceType = ImageService()
-    //MARK: - Life Cycle
+    @IBOutlet private var descLeadingch: NSLayoutConstraint!
+    @IBOutlet private var descTop: NSLayoutConstraint!
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupIntialUI()
         viewModel?.fetchGameDetails()
+
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
-    //MARK: - Actions
+
+    // MARK: - Actions
     @objc
     func btnFavTapped(_ sender: AnyObject) {
         if viewModel?.isFavourite() == true {
             viewModel?.removeFromFavourite()
-            navigationItem.rightBarButtonItem?.title = "Favourite"
+            navigationItem.rightBarButtonItem?.title = NSLocalizedString("Favourite", comment: "")
         } else {
             viewModel?.addToFavourite()
-            navigationItem.rightBarButtonItem?.title = "Favourited"
+            navigationItem.rightBarButtonItem?.title = NSLocalizedString("Favourited", comment: "")
         }
     }
-    
+
     @IBAction private func btnWebsite(sender: UIButton) {
         if let url = viewModel?.getWebsiteUrl() {
             UIApplication.shared.open(url)
         }
     }
-    
+
     @IBAction private func btnReddit(sender: UIButton) {
         if let url = viewModel?.getRedditUrl() {
             UIApplication.shared.open(url)
         }
     }
-    
-    //MARK: - Private Methods
+
+    // MARK: - Private Methods
     private func setupIntialUI() {
         gradientView.addGradient(color1: .clear, color2: .black.withAlphaComponent(0.8))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favourite", style: .plain, target: self, action: #selector(btnFavTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Favourite", comment: ""), style: .plain, target: self, action: #selector(btnFavTapped))
         viewModel?.delegate = self
         self.contentView.isHidden = true
         self.activityIndicator.isHidden = false
-        redditBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        redditBtn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        let title = viewModel?.isFavourite() == true ? "Favourited" : "Favourite"
+        let title = viewModel?.isFavourite() == true ? NSLocalizedString("Favourited", comment: "") : NSLocalizedString("Favourite", comment: "")
         navigationItem.rightBarButtonItem?.title = title
     }
-    
+
 }
 
-//MARK: - View Model Delegate
+// MARK: - View Model Delegate
 extension DetailView: GameDetailViewModelDelegate {
     func showError(error: NetworkRequestError) {
         DispatchQueue.main.async { [weak self] in
             error.showErrorDialog(viewController: self)
         }
     }
-    
+
     func updateUI(with gameDetail: GameDetailModel) {
         DispatchQueue.main.async { [weak self] in
             self?.contentView.isHidden = false

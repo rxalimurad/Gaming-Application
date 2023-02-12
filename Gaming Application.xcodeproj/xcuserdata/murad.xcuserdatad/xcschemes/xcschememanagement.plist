@@ -9,6 +9,31 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Gaming ApplicationTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5F15E7CC299505C800AE11DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5F15E7E2299505D000AE11DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5F15E7EC299505D000AE11DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>

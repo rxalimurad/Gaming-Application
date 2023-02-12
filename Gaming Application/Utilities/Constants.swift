@@ -19,7 +19,7 @@ enum Constants {
     }
     enum Configuration {
         static let pageSize = "10"
-        static let apiKeyValue = "80f516ce346c4f829928980ec4779fee"
+        static let apiKeyValue = Bundle.main.infoDictionary?["API_KEY"] as? String ?? ""
     }
     enum UserDefaults {
         static let openedGames = "openedGames"

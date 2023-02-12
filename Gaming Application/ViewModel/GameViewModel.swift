@@ -17,7 +17,6 @@ protocol GameViewModelType {
     var searchString: String { get set}
     var delegate: GameViewModelDelegate? { get set}
     var hitInProgress: Bool { get set}
-    var gamesList: [Game] { get set}
     init(service: GameServiceType)
     func getGamesListCount() -> Int
     func getGame(at: IndexPath) -> Game?
@@ -25,7 +24,7 @@ protocol GameViewModelType {
 }
 
 class GameViewModel: GameViewModelType {
-    //MARK: - properties
+    // MARK: - properties
     var hitInProgress = false {
         didSet {
             self.delegate?.updateTableFooter(isHidden: !hitInProgress)
@@ -45,18 +44,21 @@ class GameViewModel: GameViewModelType {
             delegate?.updateUI(games: gamesList)
         }
     }
-    //MARK: - Intializer
+    // MARK: - Intializer
     required init(service: GameServiceType) {
         self.service = service
     }
-    //MARK: - View Controller Helper
+    // MARK: - View Controller Helper
     func getGamesListCount() -> Int {
         self.gamesList.count
     }
     func getGame(at indexPath: IndexPath) -> Game? {
-        return self.gamesList[indexPath.row]
+        if indexPath.row < gamesList.count {
+            return self.gamesList[indexPath.row]
+        }
+        return nil
     }
-    //MARK: - Service Calls
+    // MARK: - Service Calls
     func getGamesList(search: String?) {
         hitInProgress = true
         service.getGamesList(page: self.pageNumber, search: search) {[weak self] error, gameModel in
@@ -67,10 +69,10 @@ class GameViewModel: GameViewModelType {
                 if let gameModel = gameModel {
                     if let games = gameModel.results {
                         self?.gamesList.append(contentsOf: games)
-                    } 
+                    }
                 }
             }
         }
     }
-    
+
 }

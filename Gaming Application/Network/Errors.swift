@@ -7,12 +7,12 @@
 
 import UIKit
 
-enum NetworkRequestError: Error {
+enum NetworkRequestError: Error, Equatable {
     case parsingError
     case emptyData
     case notConnected
     case serverError(error: String)
-    
+
     func showErrorDialog(viewController: UIViewController?) {
         var errorMsg = "General proccess error.\n Please try again."
         switch self {
@@ -27,7 +27,7 @@ enum NetworkRequestError: Error {
             print(errorMsg)
             break
         }
-        
+
         let alert = UIAlertController(title: nil, message: errorMsg, preferredStyle: .alert)
         let btn = UIAlertAction(title: "Ok", style: .default)
         alert.addAction(btn)
