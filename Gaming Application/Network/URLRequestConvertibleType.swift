@@ -29,7 +29,7 @@ enum ServiceNames: String {
 }
 struct Endpoint {
     private let scheme: String = "https"
-    private let host: String = URLs.serverURL
+    private let host: String = URLs.baseURL
     private let urlPostfix: String?
     private let method: HTTPMethod
     private let queryItems: [String: Any?]?

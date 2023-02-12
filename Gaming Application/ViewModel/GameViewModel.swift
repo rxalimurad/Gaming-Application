@@ -17,7 +17,6 @@ protocol GameViewModelType {
     var searchString: String { get set}
     var delegate: GameViewModelDelegate? { get set}
     var hitInProgress: Bool { get set}
-    var gamesList: [Game] { get set}
     init(service: GameServiceType)
     func getGamesListCount() -> Int
     func getGame(at: IndexPath) -> Game?

@@ -8,14 +8,15 @@
 import UIKit
 
 class GameViewCell: UITableViewCell {
+    //MARK: - Properties
+    private lazy var imageService: ImageServiceType = ImageService()
+    private var imageRequest: Cancellable?
+    //MARK: - Outlets
     @IBOutlet private var gameImg: UIImageView!
     @IBOutlet private var gameTitle: UILabel!
     @IBOutlet private var gameMetacritic: UILabel!
     @IBOutlet private var gameGenre: UILabel!
-    private lazy var imageService: ImageServiceType = ImageService()
-    private var imageRequest: Cancellable?
-
-
+    //MARK: - Methods
     func configureCell(game: Game, rememberOpenGame: Bool = true) {
         gameTitle.text = game.name ?? ""
         gameMetacritic.text = "\(game.metacritic ?? 0)"
@@ -29,7 +30,7 @@ class GameViewCell: UITableViewCell {
             self?.gameImg.image = image
         }
     }
-    
+    //MARK: - Overrides
     override func prepareForReuse() {
         super.prepareForReuse()
         gameImg.image = nil
